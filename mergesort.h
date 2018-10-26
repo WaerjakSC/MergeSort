@@ -1,59 +1,73 @@
 #ifndef MERGESORT_H
 #define MERGESORT_H
 
+#include <chrono>
+#include <conio.h>
 #include <iostream>
 #include <vector>
-#include <conio.h>
 
-const int ARRAYSIZE = 100;
+template <class T> class mergeSort {
+private:
+  void skrivtab(std::vector<T> tab) {
+    for (auto temp : tab)
+      std::cout << temp << ", ";
+    std::cout << "\n";
+  }
+  const int m_size;
 
-template <class T> class mergeSort
-{
 public:
-    void skrivtab(std::vector<T> tab, int n) {
-        for (int k = 0; k < n; k++)
-            std::cout << tab[k] << ", ";
-        std::cout << "trykk en tast\n";
-        _getch();
+  mergeSort(int size) : m_size(size) {}
+  // Default sorting function
+  void Sorting(std::vector<T> *tab) {
+    std::cout << "\n========== Merge Sort ==========\n";
+    if (m_size <= 10) {
+      std::cout << "Unsorted vector: ";
+      skrivtab(*tab); // Printing unsorted vector
     }
-    void Sorting(std::vector<T> *tab, int n) {
-        int i, j, k, lower1, lower2, size, upper1, upper2;
-        std::vector<T> hjelp[ARRAYSIZE];
+    size_t i, j, k, lower1, lower2, size, upper1, upper2;
+    std::vector<T> hjelp(m_size);
 
-        skrivtab(*tab, n);
+    size = 1;
+    std::chrono::system_clock::time_point starttid =
+        std::chrono::system_clock::now();
+    while (size < m_size) {
+      lower1 = 0;
+      k = 0;
+      while (lower1 + size < m_size) {
+        upper1 = lower1 + size - 1;
+        lower2 = upper1 + 1;
+        upper2 = (lower2 + size - 1 < m_size) ? lower2 + size - 1 : m_size - 1;
+        for (i = lower1, j = lower2; i <= upper1 && j <= upper2; k++) {
+          if (tab->at(i) < tab->at(j))
+            hjelp.at(k) = tab->at(i++);
+          else
+            hjelp.at(k) = tab->at(j++);
+        }
+        for (; i <= upper1; k++)
+          hjelp.at(k) = tab->at(i++);
+        for (; j <= upper2; k++)
+          hjelp.at(k) = tab->at(j++);
 
-        size = 1;
-        while (size < n) {
-            lower1 = 0;
-            k = 0;
-            while (lower1 + size < n) {
-                upper1 = lower1 + size - 1;
-                lower2 = upper1 + 1;
-                upper2 = (lower2 + size - 1 < n) ? lower2 + size - 1 : n - 1;
-                for (i = lower1, j = lower2; i <= upper1 && j <= upper2; k++) {
-                    if (tab[i] < tab[j])
-                        hjelp[k] = tab[i++];
-                    else
-                        hjelp[k] = tab[j++];
-                }
-                for (; i <= upper1; k++)
-                    hjelp[k] = tab[i++];
-                for (; j <= upper2; k++)
-                    hjelp[k] = tab[j++];
+        lower1 = upper2 + 1;
+      } // endwhile
 
-                lower1 = upper2 + 1;
-            } // endwhile
+      for (i = lower1; k < m_size; i++)
+        hjelp.at(k++) = tab->at(i);
+      for (i = 0; i < m_size; i++)
+        tab->at(i) = hjelp.at(i);
 
-            for (i = lower1; k < n; i++)
-                hjelp[k++] = tab[i];
-            for (i = 0; i < n; i++)
-                tab[i] = hjelp[i];
+      size = size * 2;
 
-            size = size * 2;
-
-            skrivtab(*tab, n);
-        } // endwhile
+    } // endwhile
+    std::chrono::system_clock::time_point sluttid =
+        std::chrono::system_clock::now();
+    std::chrono::duration<double> varighet = sluttid - starttid;
+    if (m_size <= 10) {
+      std::cout << "Sorted vector: ";
+      skrivtab(*tab); // Printing sorted vector
     }
+    std::cout << "Elapsed time: " << varighet.count() << "\n";
+  }
 };
 
 #endif // MERGESORT_H

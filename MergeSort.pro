@@ -5,7 +5,13 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp \
-    mergesort.cpp
+    mergesort.cpp \
+    insertionsort.cpp \
+    randomizer.cpp \
+    selectionsort.cpp
 
 HEADERS += \
-    mergesort.h
+    mergesort.h \
+    insertionsort.h \
+    randomizer.h \
+    selectionsort.h

@@ -1,36 +1,55 @@
 // ADS101 Algoritmer og datastrukturer 181022
 // mergesort eksempel
 
+#include "insertionsort.h"
+#include "mergesort.h"
+#include "randomizer.h"
+#include "selectionsort.h"
 #include <chrono>
 #include <iostream>
 #include <vector>
-#include "mergesort.h"
+
+void RunSortingCalls();
 
 using namespace std;
 
 int main() {
-  vector<int> tab {9, 7, 1, 5, 4, 6, 8, 9, 7};
-  const int n = 9;
-  auto starttid = chrono::system_clock::now();
-  mergeSort<int> IntSort;
-  IntSort.Sorting(&tab, n);
-  auto sluttid = chrono::system_clock::now();
-  chrono::duration<double> varighet = sluttid - starttid;
-  cout << varighet.count() << " er ikke imponerende, men tastetrykkene tok tid."
-       << endl;
-  vector<int> t[12];
-  for (;;) {
-    cout << "12 heltall: ";
-    for (int i = 0; i < 12; i++)
-      cin >> t->at(i);
-    {
-      starttid = chrono::system_clock::now();
-      IntSort.Sorting(t, 12);
-      sluttid = chrono::system_clock::now();
-      chrono::duration<double> varighet = sluttid - starttid;
-      cout << "elapsed time: " << varighet.count() << endl;
-    }
-    break;
-  }
+
+  RunSortingCalls();
   return 0;
+}
+
+void RunSortingCalls() {
+  int vectorSize{10};
+  // MergeSort using ints
+  randomizer<int> randomInts;
+  mergeSort<int> IntMSort(vectorSize);
+  vector<int> randomizedVector = randomInts.generateVector(vectorSize);
+  IntMSort.Sorting(&randomizedVector);
+
+  // InsertionSort using ints
+  InsertionSort<int> IntISort(vectorSize);
+  randomizedVector = randomInts.generateVector(vectorSize);
+  IntISort.Sorting(&randomizedVector);
+
+  // SelectionSort using ints
+  selectionsort<int> IntSSort(vectorSize);
+  randomizedVector = randomInts.generateVector(vectorSize);
+  IntSSort.Sorting(&randomizedVector);
+
+  // MergeSort using floats
+  mergeSort<double> DoubleMSort(vectorSize);
+  randomizer<double> randomFloats;
+  vector<double> randVector = randomFloats.generateVector(vectorSize);
+  DoubleMSort.Sorting(&randVector);
+
+  // InsertionSort using floats
+  InsertionSort<double> DoubleISort(vectorSize);
+  randVector = randomFloats.generateVector(vectorSize);
+  DoubleISort.Sorting(&randVector);
+
+  // SelectionSort using floats
+  selectionsort<double> DoubleSSort(vectorSize);
+  randVector = randomFloats.generateVector(vectorSize);
+  DoubleSSort.Sorting(&randVector);
 }
