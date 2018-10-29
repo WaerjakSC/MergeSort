@@ -13,6 +13,8 @@ class InsertionSort
 private:
     const int m_size;
 
+    std::string className{"Insertion Sort"};
+
     // Prints the vector to console
     void skrivtab(std::vector<T> tab)
     {

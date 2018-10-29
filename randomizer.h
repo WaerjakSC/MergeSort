@@ -7,7 +7,7 @@
 namespace ADS101
 {
 template <class T>
-class randomizer
+class Randomizer
 {
 private:
     std::mt19937 m_mt;
@@ -28,7 +28,7 @@ private:
     }
 
 public:
-    randomizer() : m_mt((std::random_device())()) {}
+    Randomizer() : m_mt((std::random_device())()) {}
 
     std::vector<T> generateVector(const int vectorSize)
     {

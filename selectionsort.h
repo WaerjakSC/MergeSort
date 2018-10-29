@@ -13,6 +13,8 @@ class SelectionSort
 private:
     const int m_size;
 
+    std::string className{"Selection Sort"};
+
     // Prints the vector to console
     void skrivtab(std::vector<T> tab)
     {

@@ -17,6 +17,7 @@ using namespace ADS101;
 
 int main()
 {
+
     for (int i = 10; i <= 10000; i *= 10)
     {
         std::cout << "\nSorting " << i << " random numbers.\n";
@@ -29,7 +30,7 @@ void RunSortingCalls(int vectorSize)
 {
     std::cout << "\nInts:\n";
     // MergeSort using ints
-    randomizer<int> randomInts;
+    Randomizer<int> randomInts;
     vector<int> randomizedVector = randomInts.generateVector(vectorSize);
     MergeSort<int> IntMSort(&randomizedVector, vectorSize);
 
@@ -73,7 +74,7 @@ void RunSortingCalls(int vectorSize)
     std::cout << "\nFloats:\n";
 
     // MergeSort using floats
-    randomizer<double> randomFloats;
+    Randomizer<double> randomFloats;
     vector<double> randVector = randomFloats.generateVector(vectorSize);
     MergeSort<double> DoubleMSort(&randVector, vectorSize);
 

@@ -14,6 +14,8 @@ class MergeSort
 private:
     const int m_size;
 
+    std::string className{"Merge Sort"};
+
     // Prints the vector to console
     void skrivtab(std::vector<T> tab)
     {

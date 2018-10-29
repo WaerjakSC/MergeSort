@@ -37,6 +37,8 @@ private:
     };
     node *root;
 
+    std::string className{"Binary Search Tree"};
+
     TreeNode::node *CreateLeaf(Comparable data)
     {
         node *n = new node;
