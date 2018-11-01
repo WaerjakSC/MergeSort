@@ -29,18 +29,19 @@ int main()
 void RunSortingCalls(int vectorSize)
 {
     std::cout << "\nInts:\n";
-    // MergeSort using ints
+
+    // SelectionSort using ints
     Randomizer<int> randomInts;
     vector<int> randomizedVector = randomInts.generateVector(vectorSize);
-    MergeSort<int> IntMSort(&randomizedVector, vectorSize);
+    SelectionSort<int> IntSSort(&randomizedVector, vectorSize);
 
     // InsertionSort using ints
     randomizedVector = randomInts.generateVector(vectorSize);
     InsertionSort<int> IntISort(&randomizedVector, vectorSize);
 
-    // SelectionSort using ints
+    // MergeSort using ints
     randomizedVector = randomInts.generateVector(vectorSize);
-    SelectionSort<int> IntSSort(&randomizedVector, vectorSize);
+    MergeSort<int> IntMSort(&randomizedVector, vectorSize);
 
     // Binary Search Tree using ints
     TreeNode<int> IntBSTSort;
@@ -73,18 +74,18 @@ void RunSortingCalls(int vectorSize)
 
     std::cout << "\nFloats:\n";
 
-    // MergeSort using floats
+    // SelectionSort using floats
     Randomizer<double> randomFloats;
     vector<double> randVector = randomFloats.generateVector(vectorSize);
-    MergeSort<double> DoubleMSort(&randVector, vectorSize);
+    SelectionSort<double> DoubleSSort(&randVector, vectorSize);
 
     // InsertionSort using floats
     randVector = randomFloats.generateVector(vectorSize);
     InsertionSort<double> DoubleISort(&randVector, vectorSize);
 
-    // SelectionSort using floats
+    // MergeSort using floats
     randVector = randomFloats.generateVector(vectorSize);
-    SelectionSort<double> DoubleSSort(&randVector, vectorSize);
+    MergeSort<double> DoubleMSort(&randVector, vectorSize);
 
     // Binary Search Tree using ints
     TreeNode<int> DoubleBSTSort;
